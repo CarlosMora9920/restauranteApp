@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "restauranApp",
+    "slug": "restauranApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "restauranApp"
+}
