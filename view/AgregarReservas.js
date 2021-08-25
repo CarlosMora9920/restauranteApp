@@ -14,7 +14,7 @@ const image = {uri: "https://fondosmil.com/fondo/17554.jpg" };
 
 //https://i.pinimg.com/736x/a3/d9/50/a3d950fa6a5fbd4562dd24830deb447e.jpg
 
-const Reservas = props => {
+const AgregarReservas = props => {
     
 
     
@@ -48,6 +48,7 @@ const Reservas = props => {
           } catch (error) {
             console.log(error)
           }
+          props.navigation.navigate("Reservas");
         }
       };
 
@@ -111,6 +112,8 @@ const Reservas = props => {
     );
 }
 
+//estilos
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -138,4 +141,4 @@ const styles = StyleSheet.create({
       },
   });
 
-export default Reservas;
+export default AgregarReservas;

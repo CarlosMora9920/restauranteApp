@@ -9,6 +9,7 @@ import {
  import firebase from '../firebase';
 
  import {
+    Button,
     Container,
     Separator,
     Content,
@@ -39,22 +40,25 @@ import {
     return(
         <Container styles={globalStyles.contenedor}>
              <Content style={{backgroundColor: '#FFF'}}>
+
+             <Button
+                     style={globalStyles.boton}
+                     rounded
+                     block
+                     onPress={() =>  navigation.navigate('AgregarReservas')}
+                                   
+              >
+                    <Text style={globalStyles.botonTexto}>Agregar una nueva Reserva</Text>
+              </Button>
                  <List>
                      {reserva&&reserva.map(reserva => {
                          const{Nombre,Numero,Email,Num_person,id}= reserva;
                          return(
+                             
+                           
+                                 
                              <Fragment key={id}>
-                                    <Button
-                                        style={globalStyles.boton}
-                                        rounded
-                                        block
-                                        onPress={() => reservaR()}
-                                        
-                                    >
-                                        <Text style={globalStyles.botonTexto}>Agregar una nueva Reserva</Text>
-                                    </Button>
-
-
+                                   
                                  <ListItem
                                      onPress={ () => {
                                          //navigation.navigate("DetalleReservas",);
@@ -72,6 +76,7 @@ import {
                                  </ListItem>
 
                              </Fragment>
+                            
                          )
                      })}
                  </List>

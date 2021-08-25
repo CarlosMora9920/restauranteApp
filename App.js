@@ -13,6 +13,7 @@ import ResumenPedido from './view/ResumenPedido';
 import ProgresoPedido from './view/ProgresoPedido';
 import Reservas from './view/Reserva';
 import DetalleReservas from './view/DetalleReserva';
+import AgregarReservas from './view/AgregarReservas';
 
 //components
 import BotonResumen from './components/ui/BotonResumen';
@@ -110,6 +111,16 @@ export default function App() {
                       title: "Detalle Reservas"
                     }}
                   />
+
+                  <Stack.Screen
+                    name="AgregarReservas"
+                    component={AgregarReservas}
+                    options={{
+                      title: "Agregar Reservas"
+                      
+                    }}
+                  />
+
 
               </Stack.Navigator>
 

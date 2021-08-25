@@ -8,7 +8,7 @@ import {
     StyleSheet,
   } from "react-native"
 
-import {Button, Text, H1,Center} from 'native-base';
+import {Button, Text, H1,Container,Center } from 'native-base';
 import { TextInput } from "react-native-gesture-handler";
 import globalStyles from '../styles/global';
 import firebase from '../firebase';
@@ -43,7 +43,7 @@ const DetalleReserva = (props) => {
         const dbid = firebase.db.collection("reserva").doc(props.route.params.reservaId);
         await dbid.delete();
         setloading(false)
-        props.navigation.navigate("Reserva")
+        props.navigation.navigate("VistaReserva")
     };
 
     const ConfirmationAlert = () => {
@@ -61,15 +61,15 @@ const DetalleReserva = (props) => {
     };
 
     const updateReserva = async () => {
-        const reserRef = firebase.db.collection("reserva").doc(reserva.id);
+        const reserRef = firebase.db.collection("reserva").doc(reser.id);
         await reserRef.set({
-            Nombre: state.Nombre,
-            Numero: state.Numero,
-            Email: state.Email,
-            Num_person: state.Num_person,
+            Nombre: reser.Nombre,
+            Numero: reser.Numero,
+            Email: reser.Email,
+            Num_person: reser.Num_person,
         });
         setReser(initialState);
-        props.navigation("Reserva")
+        props.navigation.navigate("VistaReserva");
     };
 
     useEffect(() => {
@@ -86,14 +86,17 @@ const DetalleReserva = (props) => {
 
     return (
        
-        <ScrollView styles={globalStyles.contenido}>
-            <View styles={styles.container}>
+        <ScrollView style={styles.container}>
+            
+            <Container styles={globalStyles.reserva}>
+           
+            <View >
                 <TextInput
                      placeholder="Nombre"
                      autoCompleteType="username"
                      style={styles.inputGroup}
                      value={reser.Nombre}
-                     onChangeText={(value) => handleTextChange(value, "Nombre")}
+                     onChangeText={(value) => handleChangeText(value, "Nombre")}
                 />
             </View>
             <View>
@@ -102,7 +105,7 @@ const DetalleReserva = (props) => {
                     autoCompleteType="tel"
                     style={styles.inputGroup}
                     value={reser.Numero}
-                    onChangeText={(value) => handleTextChange(value, "phone")}
+                    onChangeText={(value) => handleChangeText(value, "Numero")}
                  />
             </View>
 
@@ -112,7 +115,7 @@ const DetalleReserva = (props) => {
                 placeholder="Email"
                style={styles.inputGroup}
                 value={reser.Email}
-                onChangeText={(value) => handleTextChange(value, "Email")}
+                onChangeText={(value) => handleChangeText(value, "Email")}
                 />
             </View>
 
@@ -122,7 +125,7 @@ const DetalleReserva = (props) => {
                      autoCompleteType="Num_person"
                      style={styles.inputGroup}
                      value={reser.Num_person}
-                     onChangeText={(value) => handleTextChange(value, "Num_person")}
+                     onChangeText={(value) => handleChangeText(value, "Num_person")}
                 />
             </View>
             <View>
@@ -130,7 +133,7 @@ const DetalleReserva = (props) => {
                 style={globalStyles.boton}
                 rounded
                 block
-                onPress={() => reservaR()}
+                onPress={() => ConfirmationAlert()}
                 
             >
                 <Text style={globalStyles.botonTexto}>Eliminar Reserva</Text>
@@ -143,13 +146,15 @@ const DetalleReserva = (props) => {
                 style={globalStyles.boton}
                 rounded
                 block
-                onPress={() => reservaR()}
+                onPress={() => updateReserva()}
                 
             >
                 <Text style={globalStyles.botonTexto}>Actualizar Reserva</Text>
             </Button>
             </View>
-          
+            
+            </Container>
+            
         </ScrollView>
        
     );
@@ -158,11 +163,13 @@ const DetalleReserva = (props) => {
 //estilos
 
 const styles = StyleSheet.create({
+    
     container: {
-      flex: 1,
-      padding: 20,
-      marginTop: 8,
-    },
+        flex: 1,
+        padding: 35,
+        position: "relative",
+      },
+
     cant: {
       flex: 1,
       marginTop: 8,
@@ -179,10 +186,11 @@ const styles = StyleSheet.create({
     },
     inputGroup: {
       flex: 1,
-      padding: 0,
+      padding: 10,
       marginBottom: 15,
       borderBottomWidth: 1,
       borderBottomColor: "#cccccc",
+      
     },
     btn: {
       marginBottom: 7,

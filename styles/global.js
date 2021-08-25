@@ -3,13 +3,23 @@ import { background } from 'styled-system';
 
 const globalStyles = StyleSheet.create({
     contenedor: {
-        flex: 1
+        flex: 1,
+       
         
            
+    },
+
+    reserva: {
+        flex: 1,
+        alignSelf: 'center',
+        flexDirection: 'column',
+        justifyContent: 'center',
+
     },
     contenido: {
         marginHorizontal: '2.5%',
         flex: 1,
+       
     },
     boton: {
         //backgroundColor: '#5DC1B9',
